@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人矿物库 (The Mineral Collection)</title>
+    <!-- 我们将引入下面写的 CSS 样式 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 顶部导航栏 / Header -->
+    <header>
+        <h1>💎 私人矿物标本库</h1>
+        <p>A digital archive of my mineral collection</p>
+    </header>
+
+    <!-- 主体控制区：筛选器 -->
+    <section class="controls">
+        <div class="filter-group">
+            <label for="category-filter">矿物分类:</label>
+            <select id="category-filter">
+                <option value="all">所有分类 (All)</option>
+                <!-- Javascript 将会自动读取 CSV 并在这里添加：氧化物、硅酸盐等 -->
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="location-filter">产地筛选:</label>
+            <select id="location-filter">
+                <option value="all">所有产地 (All)</option>
+                <!-- Javascript 将会自动在这里添加：中国姚岗仙、马达加斯加等 -->
+            </select>
+        </div>
+    </section>
+
+    <!-- 板块一：矿物展示墙 (照片网格) -->
+    <section class="gallery-grid" id="mineral-gallery">
+        <!-- Javascript 将会读取 CSV，在这里自动生成几百张照片和名字的框框 -->
+    </section>
+
+    <!-- 板块二：矿区足迹 (预留位置，下次我们写这部分) -->
+    <section class="mining-trips" id="trips-section">
+        <h2>🗺️ 矿区足迹 (Mining Adventures)</h2>
+        <div id="trips-container">
+            <!-- 稍后在这里实现横向滑动的照片行 -->
+        </div>
+    </section>
+
+    <!-- 弹出层 (Modal)：点击图片后弹出的详细信息框 -->
+    <div id="mineral-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <img id="modal-img" src="" alt="Mineral">
+            <div class="modal-info">
+                <h2 id="modal-title">中英文名称</h2>
+                <p><strong>化学式 / Formula:</strong> <span id="modal-formula"></span></p>
+                <p><strong>分类 / Class:</strong> <span id="modal-class"></span></p>
+                <p><strong>产地 / Locality:</strong> <span id="modal-locality"></span></p>
+                <p><strong>尺寸 / Size:</strong> <span id="modal-size"></span> cm</p>
+                <p><strong>重量 / Weight:</strong> <span id="modal-weight"></span> g</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 我们将引入读取 CSV 和控制网页的大脑：Javascript -->
+  <!-- 引入解析 CSV 的极简工具 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <!-- 我们自己的网站大脑 -->
+    <script src="script.js"></script>
+</body>
+</html>

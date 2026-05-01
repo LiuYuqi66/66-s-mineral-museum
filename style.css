@@ -1,0 +1,164 @@
+/* 基础极简设定 (Mindat 风格) */
+body {
+    font-family: Arial, Helvetica, sans-serif; /* 学术感无衬线字体 */
+    background-color: #ffffff; /* 纯白背景 */
+    color: #333333;
+    margin: 0 auto;
+    max-width: 1200px; /* 限制页面最大宽度，居中显示 */
+    padding: 20px;
+}
+
+/* 顶部标题 */
+header {
+    border-bottom: 2px solid #222;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+header h1 { margin: 0; font-size: 24px; color: #000; }
+header p { margin: 5px 0 0 0; font-size: 14px; color: #666; }
+
+/* 筛选器区域 */
+.controls {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f8f9fa; /* 极浅灰色底 */
+    border: 1px solid #dee2e6;
+}
+.filter-group label { font-weight: bold; font-size: 14px; margin-right: 10px;}
+.filter-group select { padding: 5px; border: 1px solid #ccc; font-size: 14px; }
+
+/* 矿物图片网格 (类似标本柜) */
+.gallery-grid {
+    display: grid;
+    /* 自动计算一行能放多少个，最小宽度200px */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+/* 单个矿物卡片 */
+.mineral-card {
+    border: 1px solid #dcdcdc;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.mineral-card:hover {
+    border-color: #0056b3; /* 鼠标悬停时边框变蓝 */
+}
+.mineral-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* 强制图片为正方形显示 */
+    object-fit: cover; /* 保证图片不拉伸变形 */
+    border-bottom: 1px solid #eee;
+}
+.card-info {
+    padding: 10px;
+    text-align: center;
+}
+.card-info .id { font-size: 12px; color: #888; margin-bottom: 4px; }
+.card-info .name { font-size: 15px; font-weight: bold; margin: 0; }
+
+/* 弹出层 (Modal) 详情页样式 */
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8); /* 半透明黑底 */
+}
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto; /* 居中 */
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    display: flex;
+    gap: 30px;
+    position: relative;
+    border: 1px solid #333;
+}
+.close-btn {
+    position: absolute;
+    right: 15px; top: 10px;
+    color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer;
+}
+.close-btn:hover { color: #000; }
+#modal-img {
+    width: 50%;
+    max-height: 500px;
+    object-fit: contain; /* 详情页完整显示图片不裁剪 */
+    background-color: #f4f4f4;
+    transition: transform 0.1s ease-out; /* 让缩放有平滑过渡效果 */
+    cursor: zoom-in; /* 鼠标放上去变成放大镜图标 */
+}
+.modal-info { width: 50%; }
+.modal-info h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0;}
+.modal-info p { margin: 10px 0; font-size: 15px; line-height: 1.5; }
+
+/* 隐藏尚未开发的板块二 */
+/* ================= 板块二：矿区足迹样式 ================= */
+.mining-trips {
+    margin-top: 60px;
+    border-top: 2px solid #222;
+    padding-top: 20px;
+}
+
+/* 每一行矿区的容器 */
+.trip-row {
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 矿区标题栏 (点击可展开详情) */
+.trip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: #fafafa;
+    padding: 10px 15px;
+    border-left: 4px solid #333;
+    transition: background-color 0.2s;
+}
+.trip-header:hover { background-color: #f0f0f0; }
+.trip-header h3 { margin: 0; font-size: 18px; color: #000; }
+.trip-header .expand-hint { font-size: 12px; color: #888; }
+
+/* 横向滚动的照片画廊 */
+.trip-gallery {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* 允许横向滚动 */
+    padding: 20px 0;
+    scroll-behavior: smooth;
+    /* 隐藏丑陋的滚动条，保持极简 */
+    scrollbar-width: none; 
+}
+.trip-gallery::-webkit-scrollbar { display: none; }
+
+.trip-gallery img {
+    height: 220px; /* 照片固定高度，宽度自适应 */
+    width: auto;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+}
+
+/* 详细信息区块 (默认隐藏) */
+.trip-details {
+    display: none; /* 默认折叠 */
+    background-color: #fdfdfd;
+    padding: 15px;
+    border: 1px solid #eee;
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444;
+}
+.trip-details p { margin: 5px 0; }
